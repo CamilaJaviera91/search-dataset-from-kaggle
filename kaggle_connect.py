@@ -38,3 +38,6 @@ if not csv_files:
 else:
     #Select the first CSV file in the directory
     csv_file = csv_files[0]
+
+#Load the dataset into a DataFrame
+    df = pd.read_csv(csv_file)
