@@ -10,4 +10,10 @@ api = ka()
 api.authenticate()
 
 #Prompt for the search term
-buscar = input("Buscar data: ")
+search_term = input("Search for data: ")
+
+#List datasets related to the search term
+datasets = api.dataset_list(search=search_term)
+
+for dataset in datasets:
+    print("Dataset found:", dataset.ref)
