@@ -17,3 +17,6 @@ datasets = api.dataset_list(search=search_term)
 
 for dataset in datasets:
     print("Dataset found:", dataset.ref)
+
+#Dataset selection
+data_ref = input("Enter Option (dataset ref): ")
