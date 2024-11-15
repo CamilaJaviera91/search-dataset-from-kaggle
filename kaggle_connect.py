@@ -30,3 +30,11 @@ download_path.mkdir(parents=True, exist_ok=True)
 
 #Download the dataset and unzip it in the specified folder
 api.dataset_download_files(data_ref, path=str(download_path), unzip=True)
+
+#List all CSV files in the download directory
+csv_files = list(download_path.glob('*.csv'))
+if not csv_files:
+    print("No CSV files found in the dataset.")
+else:
+    #Select the first CSV file in the directory
+    csv_file = csv_files[0]
