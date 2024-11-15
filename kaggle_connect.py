@@ -45,3 +45,5 @@ def kaggle_connect():
         df = pd.read_csv(csv_file)
     
     return df
+
+kaggle_connect()
