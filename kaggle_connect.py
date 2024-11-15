@@ -8,3 +8,6 @@ base_folder = Path("./")
 #Initialize the API and authenticate
 api = ka()
 api.authenticate()
+
+#Prompt for the search term
+buscar = input("Buscar data: ")
