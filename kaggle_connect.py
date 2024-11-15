@@ -20,3 +20,7 @@ for dataset in datasets:
 
 #Dataset selection
 data_ref = input("Enter Option (dataset ref): ")
+
+# Destination folder for the download
+new_folder = input("Enter the name of the new folder to store the dataset: ")
+download_path = base_folder / new_folder
