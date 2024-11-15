@@ -27,3 +27,6 @@ download_path = base_folder / new_folder
 
 #Create the folder if it doesn't exist
 download_path.mkdir(parents=True, exist_ok=True)
+
+#Download the dataset and unzip it in the specified folder
+api.dataset_download_files(data_ref, path=str(download_path), unzip=True)
