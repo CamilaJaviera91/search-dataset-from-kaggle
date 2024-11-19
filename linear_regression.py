@@ -27,6 +27,23 @@ def get_ordinal_categories(column_values):
     """
     return sorted(column_values)
 
+def plot_regression(x, y_pred, values, value_media, table_data):
+    plt.figure(figsize=(10, 6))
+    plt.plot(x, y_pred, color='blue', linewidth=2, label='Regression Line')
+    plt.scatter(x, y_pred, color='green', label='Predictions')
+    plt.xlabel(values)
+    plt.ylabel(value_media + ' (Prediction)')
+    plt.title('Linear Regression')
+    plt.legend()
+    plt.grid(alpha=0.3)
+    plt.table(cellText=table_data.values,
+              colLabels=table_data.columns,
+              cellLoc='center', loc='bottom',
+              bbox=[0.1, -0.3, 0.8, 0.2])
+    plt.subplots_adjust(left=0.1, bottom=0.3)
+    plt.show()
+
+
 #Main
 data = kc()
 df = pd.DataFrame(data)
