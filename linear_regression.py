@@ -61,3 +61,11 @@ value_media = get_column_input(data, "Enter the name of the columns to average: 
 score_columns = [col for col in data.columns if col.endswith(value_media)]
 data[value_media] = round(data[score_columns].sum(axis=1) / len(score_columns))
 data.drop(columns=score_columns, inplace=True)
+
+# Linear regression model
+x = data[['new_' + values]]
+y = data[value_media]
+
+model = lr()
+model.fit(x, y)
+y_pred = model.predict(x)
