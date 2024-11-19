@@ -13,11 +13,27 @@ def encode_column(df, column_name, ordinal_categories):
     return df
 
 def get_column_input(df, prompt):
+    """
+    Prompts the user to input a column name and suggests matches if the input is a substring of column names.
+    """
     while True:
         column_name = input(prompt)
-        if column_name in df.columns:
-            return column_name
-        print("Invalid column. Please try again.")
+        
+        # Filter columns containing the entered text
+        matching_columns = [col for col in df.columns if column_name in col]
+        
+        if matching_columns:
+            print(f"Columns containing '{column_name}': {matching_columns}")
+            
+            # Ask the user to select an exact column name from the matches
+            selected_column = input("Enter the exact column name from the list above: ")
+            if selected_column in df.columns:
+                return selected_column
+            else:
+                print("Invalid selection. Please choose a column from the list.")
+        else:
+            print(f"No columns found containing '{column_name}'. Please try again.")
+
 
 
 def get_ordinal_categories(column_values):
@@ -57,7 +73,7 @@ ordinal_categories = get_ordinal_categories(df[values].unique())
 data = encode_column(data, values, ordinal_categories)
 
 #Select column to calculate the average
-value_media = get_column_input(data, "Enter the name of the columns to average: ")
+value_media = input("Enter the name of the columns to average: ")
 score_columns = [col for col in data.columns if col.endswith(value_media)]
 data[value_media] = round(data[score_columns].sum(axis=1) / len(score_columns))
 data.drop(columns=score_columns, inplace=True)
@@ -69,3 +85,13 @@ y = data[value_media]
 model = lr()
 model.fit(x, y)
 y_pred = model.predict(x)
+
+# Create a DataFrame for the table data
+unique_values = x['new_' + values].unique()
+table_data = pd.DataFrame({
+    values: unique_values,  # Unique values of the encoded column
+    'Prediction': model.predict(pd.DataFrame(unique_values, columns=['new_' + values])).round(1)  # Predicted values
+})
+
+# Call the plot_regression function
+plot_regression(x, y_pred, values, value_media, table_data)
