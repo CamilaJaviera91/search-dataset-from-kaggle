@@ -57,7 +57,7 @@ def plot_regression(x, y_pred, values, value_media, table_data):
               cellLoc='center', loc='bottom',
               bbox=[0.1, -0.3, 0.8, 0.2])
     plt.subplots_adjust(left=0.1, bottom=0.3)
-    plt.show()
+    return plt.show()
 
 
 #Main
@@ -86,6 +86,9 @@ model = lr()
 model.fit(x, y)
 y_pred = model.predict(x)
 
+# Ensure x is flattened for plotting
+x_flattened = x.values.flatten()
+
 # Create a DataFrame for the table data
 unique_values = x['new_' + values].unique()
 table_data = pd.DataFrame({
@@ -93,5 +96,10 @@ table_data = pd.DataFrame({
     'Prediction': model.predict(pd.DataFrame(unique_values, columns=['new_' + values])).round(1)  # Predicted values
 })
 
-# Call the plot_regression function
-plot_regression(x, y_pred, values, value_media, table_data)
+# Debugging: Check data consistency
+print("x_flattened:", x_flattened)
+print("y_pred:", y_pred)
+print("table_data:\n", table_data)
+
+# Call the plot_regression function with corrected x
+#plot_regression(x_flattened, y_pred, values, value_media, table_data)
