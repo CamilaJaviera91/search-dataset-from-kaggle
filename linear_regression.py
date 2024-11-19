@@ -38,3 +38,9 @@ print(df.nunique())
 values = get_column_input(df, "Enter the name of the column to encode: ")
 ordinal_categories = get_ordinal_categories(df[values].unique())
 data = encode_column(data, values, ordinal_categories)
+
+#Select column to calculate the average
+value_media = get_column_input(data, "Enter the name of the columns to average: ")
+score_columns = [col for col in data.columns if col.endswith(value_media)]
+data[value_media] = round(data[score_columns].sum(axis=1) / len(score_columns))
+data.drop(columns=score_columns, inplace=True)
