@@ -80,8 +80,6 @@ table_data = pd.DataFrame({
 
 sorted_table= table_data.sort_values(by=values, ascending=True).drop_duplicates()
 
-print(sorted_table)
-
 value_names = []
 
 # Iterate over each unique value in the 'values' column of the sorted table.
@@ -103,7 +101,6 @@ table_data_d = {
     'Prediction': sorted_table[value_media+'_prediction']
 }
 
-print(table_data_d)
 # Convert the dictionary into a DataFrame for easier handling
 df_table = pd.DataFrame(table_data)
 
@@ -116,8 +113,6 @@ table = plt.table(cellText=df_table.values,
 
 # Adjust layout to prevent the table from overlapping with the plot
 plt.subplots_adjust(left=0.1, bottom=0.3)
-
-print(table)
 
 plt.xlabel(values)
 plt.ylabel(value_media+'_prediction')
