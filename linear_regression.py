@@ -104,15 +104,21 @@ table_data_d = {
 # Convert the dictionary into a DataFrame for easier handling
 df_table = pd.DataFrame(table_data)
 
-# Add the table to the plot, below the x-axis
 table = plt.table(cellText=df_table.values,
                   colLabels=df_table.columns,
                   cellLoc='center',
                   loc='bottom',
-                  bbox=[0.1, -0.3, 0.8, 0.2])  # [x, y, width, height] to adjust position and size
+                  bbox=[0.1, -0.5, 0.8, 0.3])  # Adjust the position and size
 
-# Adjust layout to prevent the table from overlapping with the plot
-plt.subplots_adjust(left=0.1, bottom=0.3)
+# Configuration to avoid visualization issues
+table.auto_set_font_size(False)
+table.set_fontsize(10)  # Ensure the text is readable
+
+# Adjust the background of the plot
+plt.gca().set_facecolor('white')
+
+# Adjust the layout to give space for the table
+plt.subplots_adjust(left=0.1, bottom=0.5)
 
 plt.xlabel(values)
 plt.ylabel(value_media+'_prediction')
