@@ -11,7 +11,7 @@ This file requires the following dependencies to function:<br>
 - **kaggle.api.kaggle_api_extended** (imported as **KaggleApi**): required to interact with the Kaggle API.<br>
 - **pandas**: used for data manipulation and analysis.<br>
 - **pathlib** (imported as **Path**): useful for handling file and directory paths.<br>
-<br><br>
+<br>
 ### 2. File linear_regression.py:
 This file depends on the following libraries:<br>
 
