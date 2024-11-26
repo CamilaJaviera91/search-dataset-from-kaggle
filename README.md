@@ -36,4 +36,7 @@ This file depends on the following libraries:<br>
 - Select a **descriptive variable** from the dataset for **analysis.**<br>
 ![Capture](./images/X.png)<br>
 - **Calculate the average** of the selected values as a statistical measure.<br>
-- Create a **line chart** to visualize the relationship between two variables **(X, Y)**.
+![Capture](./images/Y.png)<br>
+- **Assign a name** to the descriptive variable<br>
+![Capture](./images/assign.png)<br>
+- Create a **line chart** to visualize the relationship between two variables **(X, Y)**.<br>
