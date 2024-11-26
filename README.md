@@ -40,3 +40,4 @@ This file depends on the following libraries:<br>
 - **Assign a name** to the descriptive variable<br>
 ![Capture](./images/assign.png)<br>
 - Create a **line chart** to visualize the relationship between two variables **(X, Y)**.<br>
+![Capture](./images/linear_regression.png)<br>
