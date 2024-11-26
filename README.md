@@ -12,6 +12,7 @@ This file requires the following dependencies to function:<br>
 - **pandas**: used for data manipulation and analysis.<br>
 - **pathlib** (imported as **Path**): useful for handling file and directory paths.<br>
 <br>
+
 ### 2. File linear_regression.py:
 This file depends on the following libraries:<br>
 
