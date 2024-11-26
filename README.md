@@ -32,6 +32,7 @@ This file depends on the following libraries:<br>
 ## Project Features
 
 - Search for and download a **relevant dataset from Kaggle**.<br>
+![Captura de pantalla](./images/search.png)<br>
 - Select a **descriptive variable** from the dataset for **analysis.**<br>
 - **Calculate the average** of the selected values as a statistical measure.<br>
 - Create a **line chart** to visualize the relationship between two variables **(X, Y)**.
