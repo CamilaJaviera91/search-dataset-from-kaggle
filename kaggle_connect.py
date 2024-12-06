@@ -3,45 +3,77 @@ import pandas as pd
 from pathlib import Path
 
 def kaggle_connect():
+    try:
+        #"Download" base path
+        base_folder = Path("./")
 
-    #"Download" base path
-    base_folder = Path("./")
+        #Initialize the API and authenticate
+        api = ka()
+        api.authenticate()
 
-    #Initialize the API and authenticate
-    api = ka()
-    api.authenticate()
+        #Prompt for the search term
+        search_term = input("Search for data (press Enter to skip): ").strip()
+        if not search_term:
+            print("No search term entered. Exiting...")
+            return None
 
-    #Prompt for the search term
-    search_term = input("Search for data: ")
+        #List datasets related to the search term
+        datasets = api.dataset_list(search=search_term)
+        datasets = list(datasets) #Convert to list for indexing
+        if not datasets:
+            print("No datasets found for the search term.")
+            return None
 
-    #List datasets related to the search term
-    datasets = api.dataset_list(search=search_term)
+        #Display dataasets and prompt for selection
+        print("\nDatasets found")
+        for i, dataset in enumerate(datasets):
+            print(f"{i + 1}: {dataset.ref}")
+        
+        try:
+            option = int(input("\nEnter the number of the dataset to download: "))
+            if option < 1 or option > len(datasets):
+                print("\nInvalid selection, Exiting.")
+                return None
+            
+            #Dataset selection
+            data_ref = datasets[option - 1].ref
+        
+        except ValueError:
+            print("\nInvalid input. Please enter a number.")
+            return None
 
-    for dataset in datasets:
-        print("Dataset found:", dataset.ref)
+        #Destination folder for the download
+        new_folder = input("\nEnter the name of the new folder to store the dataset: ")
+        if not new_folder:
+            print("\nFolder name cannot be empty")
+            return None
+        
+        download_path = base_folder / new_folder
 
-    #Dataset selection
-    data_ref = input("Enter Option (dataset ref): ")
+        #Create the folder if it doesn't exist
+        download_path.mkdir(parents=True, exist_ok=True)
 
-    #Destination folder for the download
-    new_folder = input("Enter the name of the new folder to store the dataset: ")
-    download_path = base_folder / new_folder
+        #Download the dataset and unzip it in the specified folder
+        print("\nDownloading dataset...")
+        api.dataset_download_files(data_ref, path=str(download_path), unzip=True)
 
-    #Create the folder if it doesn't exist
-    download_path.mkdir(parents=True, exist_ok=True)
+        #List all CSV files in the download directory
+        csv_files = list(download_path.glob('*.csv'))
+        if not csv_files:
+            print("\nNo CSV files found in the dataset.")
+        else:
+            #Select the first CSV file in the directory
+            csv_file = csv_files[0]
+            print(f"Loading dataset from: {csv_files}")
 
-    #Download the dataset and unzip it in the specified folder
-    api.dataset_download_files(data_ref, path=str(download_path), unzip=True)
-
-    #List all CSV files in the download directory
-    csv_files = list(download_path.glob('*.csv'))
-    if not csv_files:
-        print("No CSV files found in the dataset.")
-    else:
-        #Select the first CSV file in the directory
-        csv_file = csv_files[0]
-
-    #Load the dataset into a DataFrame
-        df = pd.read_csv(csv_file)
+        #Load the dataset into a DataFrame
+            df = pd.read_csv(csv_file)
+            print("Dataset loaded successfully.")
+        
+        return df
     
-    return df
+    except Exception as e:
+        print(f"An error ocurred: {e}")
+        return None
+    
+kaggle_connect()
