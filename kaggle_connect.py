@@ -75,5 +75,3 @@ def kaggle_connect():
     except Exception as e:
         print(f"An error ocurred: {e}")
         return None
-    
-kaggle_connect()
