@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import curses
 
 from sklearn.preprocessing import OrdinalEncoder as oe
 from sklearn.linear_model import LinearRegression as lr
@@ -44,8 +45,13 @@ def get_ordinal_categories(column_values):
     """
     return sorted(column_values)
 
+# Create a new function so we can access kaggle_connect file
+def run_kaggle_download():
+    # Wrapper function to run Kaggle connect using curses.
+    return curses.wrapper(kc)
+
 #Main
-data = kc()
+data = run_kaggle_download()
 df = pd.DataFrame(data)
 
 # Show the number of unique values per column
