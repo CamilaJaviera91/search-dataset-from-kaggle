@@ -32,7 +32,7 @@ This file depends on the following libraries:<br>
 ## Project Features
 
 - Search for and download a **relevant dataset from Kaggle**.<br>
-![Capture](./images/search.png)<br>
+![Capture](./images/search2.png)<br>
 - Select a **descriptive variable** from the dataset for **analysis.**<br>
 ![Capture](./images/X.png)<br>
 - **Calculate the average** of the selected values as a statistical measure.<br>
